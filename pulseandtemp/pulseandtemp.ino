@@ -11,10 +11,12 @@ int Threshold = 550;           // Determine which Signal to "count as a beat" an
                                // Use the "Gettting Started Project" to fine-tune Threshold Value beyond default setting.
                                // Otherwise leave the default "550" value.
 
-const int lm35_pin = A1;  /* LM35 O/P pin */
+const int lm35_pin = A5;  /* LM35 O/P pin */
 
 int temp_adc_val;
 float temp_val;
+int denom=0;
+float avg_temp=0;
                                
 PulseSensorPlayground pulseSensor;  // Creates an instance of the PulseSensorPlayground object called "pulseSensor"
 
@@ -35,16 +37,21 @@ void setup() {
 
 void loop() {
 
-temp_adc_val = analogRead(lm35_pin);  /* Read Temperature */
+  temp_adc_val = analogRead(lm35_pin);  /* Read Temperature */
   temp_val = (temp_adc_val * 4.88); /* Convert adc value to equivalent voltage */
   temp_val = (temp_val/10); /* LM35 gives output of 10mv/°C */
   Serial.write((char)(int)round(temp_val));
-if (pulseSensor.sawStartOfBeat())
-{
- int myBPM = pulseSensor.getBeatsPerMinute();  // Calls function on our pulseSensor object that returns BPM as an "int".
- Serial.write((char)myBPM);
-}                                               
-
+  //Serial.print("Temperature= ");
+  //avg_temp= (avg_temp + temp_val)/2;
+  //Serial.print(temp_val);
+  //Serial.print("    BPM= ");
+  int myBPM;
+  if (pulseSensor.sawStartOfBeat())
+  {
+      myBPM = pulseSensor.getBeatsPerMinute();  // Calls function on our pulseSensor object that returns BPM as an "int".
+  }
+  Serial.write((char)myBPM);
+  //Serial.println(myBPM);
   delay(500);                    // considered best practice in a simple sketch.
 
 }
