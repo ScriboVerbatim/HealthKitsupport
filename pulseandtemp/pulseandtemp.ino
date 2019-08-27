@@ -5,13 +5,13 @@
 
 
 //  Variables
-const int PulseWire = 0;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
+const int PulseWire = 7;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
 const int LED13 = 13;          // The on-board Arduino LED, close to PIN 13.
 int Threshold = 550;           // Determine which Signal to "count as a beat" and which to ignore.
                                // Use the "Gettting Started Project" to fine-tune Threshold Value beyond default setting.
                                // Otherwise leave the default "550" value.
 
-const int lm35_pin = A5;  /* LM35 O/P pin */
+const int lm35_pin = A6;  /* LM35 O/P pin */
 
 int temp_adc_val;
 float temp_val;

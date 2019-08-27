@@ -2,13 +2,13 @@ import serial
 from time import sleep
 from NeuroPy import NeuroPy
 import datetime
-
+import sys
 
 #f = open('test.csv', 'wb')
 
 ser = serial.Serial()
 ser.baudrate = 9600
-ser.port = '/dev/ttyACM0'
+ser.port = sys.argv[1]
 ser.open()
 
 #neuropy = NeuroPy("/dev/rfcomm0", 115200)
